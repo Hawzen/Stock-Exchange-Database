@@ -1,0 +1,69 @@
+
+# Stock Market (Market Name, Currency, Market Cap, No. of stock symbols):
+NASDAQ					, USD 	, 1,720,000,000,000  (1.72 trillion), 8100
+Tadawul					, SAR 	, 2,194,408,601,300  (2.19 trillion), 202
+Tokyo Stock Exchange	, JPY 	, 5,670,000,000,000  (5.67 trillion), 2292
+Euronext				, EURO 	, 4,521,050,000,000  (4.52 trillion), 1462
+Shanghai Stock Exchange	, CNY 	, 5,010,000,000,000  (5.01 trillion), 1041
+
+# Investor (IBAN no., National ID, Sex, NetWorth, FirstName, MiddleName, LastName)
+US281264541519999339		, 9498117064, Male, Brent Aahil Chamberlain
+US341922553675553244		, 8277836920, Male, Macauley Lugo Nguyen
+SA2125267688145539388743	, 1304026480, Male, Abdo Saad Husain
+SA4038369116113433969462	, 1011353190, Male, Abdullah Mohammed Hamed
+DE16500105174529546245		, 2126117000, Male, Andreas Sheikh Perez
+FI3819869934513876			, 2300599347, Male, Ralphie O'Brien Tyson
+JP821756900040913954463245	, 8409156649, Male, Masahiro Michiko Sakurai
+JP601009600050571982645704	, 4142356652, Male, Hideki Matsumoto Kamiya
+CH4250514369317289437157	, 7734693388, Male, Li Dong Brody
+CH7550515162589388976886	, 4992719807, Male, Bo Zhou Galindo
+
+# Bank (Commercial registration no., Name, No. of Branches)
+2055005270, New York Community Bank, 225
+1010001054, Riyadh Bank			   , 341
+5016604726, MUFG Bank			   , 398
+2311911035, HSBC				   , 4000
+1516125270, Bank of China 		   , 23682
+
+# Company (Commercial registration no., No. of directors, Company Equity, Company name)
+4457756495, 22	, 62,060,000,000 	, Amazon (NASDAQ)
+5315073274, 11	, 398,000,000,000	, Saudi Aramco (Tadawul)
+6229087803, 9	, 2,048,000,000		, Toyota Motor (Tokyo Stock Exchange)
+9598342161, 20	, 1,310,000,000		, Volkswagen (Euronext)
+6713620014, 11	, 43,000,000,000	, Alibaba Group (Shanghai Stock Exchange)
+
+# CEO (Name, Sex, Age, Commercial registration no.)
+Jeff Bezos		, Male, 56, 4457756495
+Amin H. Nasser	, Male, 60, 5315073274
+Akio Toyoda		, Male, 64, 6229087803
+Herbert Diess	, Male, 62, 9598342161
+Daniel Zhang	, Male, 48, 6713620014
+
+# Stock (Syock symbol, No. of public stocks, Stock price, Market Name, Commercial registeration no.)
+AMZN, 500,890,000	, 3185	, NASDAQ					, 4457756495
+2222, 940,699,000	, 35.9	, Tadawul 					, 5315073274
+7203, 2,974,722,856	, 7301	, Tokyo Stock Exchange		, 6229087803
+VOW3, 295,089,818	, 149.08, Euronext					, 9598342161
+HKG , 2,745,000,000 , 269	, Shanghai Stock Exchange	, 6713620014
+
+## Notes:
+- Each market is primarly associated with one country (you can associate it with more markets if you want) 
+- All market cap numbers are in USD
+- All commercial registeration numbers are not real
+- I'm not sure what companies operate on which markets, but I'm inclined to say - most of them allow every market (e.g. Riyadh bank allows you to participate in most markets around the world)
+- Each company is connected to 1 CEO and 1 Stock by position (company 1 CEO 1 Stock 1, etc.)
+- Stock price is in the currency of it's stock market 
+
+## Unused commercial registeration numbers:
+8643657928
+1792169223
+5098220895
+8857232768
+3741894494
+5916016088
+2527983587
+5840277009
+3315764220
+4571804281
+3754817288
+2843025748
