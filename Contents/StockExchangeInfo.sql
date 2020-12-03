@@ -48,22 +48,22 @@ create database Stock_Exchange;
 		Stock_Symbol varchar(10),
 		Number_Of_Public_Stocks_in_thousand int,
 		Stock_Price decimal(8,2),
-		Market_Name varchar(100) not null,
-		Commercial_Registriation_Number varchar(100) not null,
+		Market_Name varchar(100),
+		Commercial_Registriation_Number varchar(100),
 
 		constraint Stock_Symbol_PK primary key(Stock_Symbol),
-		constraint Market_Name_FK foreign key(Market_Name) references Stock_Market(Market_Name),
-		constraint Commercial_Registriation_Number_FK1 foreign key(Commercial_Registriation_Number) references Company(Commercial_Registriation_Number)
+		constraint Market_Name_FK foreign key(Market_Name) references Stock_Market(Market_Name) on delete set null on update cascade,
+		constraint Commercial_Registriation_Number_FK1 foreign key(Commercial_Registriation_Number) references Company(Commercial_Registriation_Number) on delete set null on update cascade
 		);
 
 	create table CEO(
 		Name varchar(100),
 		Sex char(1) not null,
 		Age int not null,
-		Commercial_Registriation_Number varchar(100) not null,
+		Commercial_Registriation_Number varchar(100),
 
 		constraint Compound_PK primary key(Name , Commercial_Registriation_Number),
-		constraint Commercial_Registriation_Number_FK2 foreign key(Commercial_Registriation_Number) references Company(Commercial_Registriation_Number),
+		constraint Commercial_Registriation_Number_FK2 foreign key(Commercial_Registriation_Number) references Company(Commercial_Registriation_Number) on update cascade,
 		constraint Age_Check check(Age >= 23)
 		);
 
@@ -73,18 +73,19 @@ create database Stock_Exchange;
 		Commercial_Registriation_Number varchar(100),
 
 		constraint Compound_PK primary key(Stock_Symbol , IBAN_number , Commercial_Registriation_Number),
-		constraint Stock_Symbol_FK foreign key(Stock_Symbol) references Stock(Stock_Symbol),
-		constraint IBAN_number_FK foreign key(IBAN_number) references Investor(IBAN_number),
-		constraint Commercial_Registriation_Number_FK3 foreign key(Commercial_Registriation_Number) references Bank(Commercial_Registriation_Number)
+		constraint Stock_Symbol_FK foreign key(Stock_Symbol) references Stock(Stock_Symbol) on update cascade,
+		constraint IBAN_number_FK foreign key(IBAN_number) references Investor(IBAN_number) on update cascade,
+		constraint Commercial_Registriation_Number_FK3 foreign key(Commercial_Registriation_Number) references Bank(Commercial_Registriation_Number) on update cascade
 		);
 
 	create table Owns(
 		Stock_Symbol varchar(10),
 		IBAN_number varchar(100),
+		Number_Of_Shares int,
 
 		constraint Compound_PK primary key(Stock_Symbol , IBAN_number),
-		constraint Stock_Symbol_FK2 foreign key(Stock_Symbol) references Stock(Stock_Symbol),
-		constraint IBAN_number_FK2 foreign key(IBAN_number) references Investor(IBAN_number)
+		constraint Stock_Symbol_FK2 foreign key(Stock_Symbol) references Stock(Stock_Symbol) on update cascade,
+		constraint IBAN_number_FK2 foreign key(IBAN_number) references Investor(IBAN_number) on update cascade
 		);
 
 	insert into Stock_Market(
@@ -159,7 +160,7 @@ create database Stock_Exchange;
 			'US281264541519999339',
 			'9498117064',
 			'M',
-			0,
+			35970,
 			'Brent',
 			'Aahil',
 			'Chamberlain'
@@ -174,10 +175,28 @@ create database Stock_Exchange;
 			Middle_Name,
 			Last_Name
 			)values(
+			'DE16500105174529546245',
+			'2126117000',
+			'M',
+			99801,
+			'Andreas ',
+			'Sheikh ',
+			'Perez'
+			);
+
+		insert into Investor(
+			IBAN_number,
+			National_ID,
+			Sex,
+			NetWorth,
+			First_Name,
+			Middle_Name,
+			Last_Name
+			)values(
 			'US341922553675553244',
 			'8277836920',
 			'M',
-			1,
+			94207,
 			'Macauley',
 			'Lugo',
 			'Nguyen'
@@ -192,10 +211,82 @@ create database Stock_Exchange;
 			Middle_Name,
 			Last_Name
 			)values(
+			'JP821756900040913954463245',
+			'8409156649',
+			'M',
+			262214,
+			'Masahiro ',
+			'Michiko ',
+			'Sakurai'
+			);
+
+		insert into Investor(
+			IBAN_number,
+			National_ID,
+			Sex,
+			NetWorth,
+			First_Name,
+			Middle_Name,
+			Last_Name
+			)values(
+			'JP601009600050571982645704',
+			'4142356652',
+			'M',
+			598622,
+			'Hideki',
+			'Matsumoto',
+			'Kamiya'
+			);
+
+		insert into Investor(
+			IBAN_number,
+			National_ID,
+			Sex,
+			NetWorth,
+			First_Name,
+			Middle_Name,
+			Last_Name
+			)values(
+			'CH4250514369317289437157',
+			'7734693388',
+			'M',
+			5156,
+			'Li',
+			'Dong',
+			'Brody'
+			);
+
+		insert into Investor(
+			IBAN_number,
+			National_ID,
+			Sex,
+			NetWorth,
+			First_Name,
+			Middle_Name,
+			Last_Name
+			)values(
+			'CH7550515162589388976886',
+			'4992719807',
+			'M',
+			39059,
+			'Bo',
+			'Zhou',
+			'Galindo'
+			);
+
+		insert into Investor(
+			IBAN_number,
+			National_ID,
+			Sex,
+			NetWorth,
+			First_Name,
+			Middle_Name,
+			Last_Name
+			)values(
 			'SA2125267688145539388743',
 			'1304026480',
 			'M',
-			2,
+			358630,
 			'Abdo',
 			'Saad',
 			'Husain'
@@ -213,7 +304,7 @@ create database Stock_Exchange;
 			'SA4038369116113433969462',
 			'1011353190',
 			'M',
-			3,
+			459174,
 			'Abdullah',
 			'Mohammed',
 			'Hamed'
@@ -231,7 +322,7 @@ create database Stock_Exchange;
 			'FI3819869934513876',
 			'2300599347',
 			'M',
-			4,
+			173115,
 			'Ralphie',
 			'O Brien',
 			'Tyson'
@@ -347,6 +438,66 @@ create database Stock_Exchange;
 			'Alibaba Group'
 			);
 
+		insert into Company(
+			Commercial_Registriation_Number,
+			Number_Of_Directors,
+			Company_Equity_in_thousand,
+			Company_Name
+			)values(
+			'8643657928',
+			25,
+			25003600,
+			'Google'
+			);
+
+		insert into Company(
+			Commercial_Registriation_Number,
+			Number_Of_Directors,
+			Company_Equity_in_thousand,
+			Company_Name
+			)values(
+			'8857232768',
+			13,
+			70000000,
+			'SABIC'
+			);
+
+		insert into Company(
+			Commercial_Registriation_Number,
+			Number_Of_Directors,
+			Company_Equity_in_thousand,
+			Company_Name
+			)values(
+			'1792169223',
+			17,
+			30310000,
+			'Nokia'
+			);
+
+		insert into Company(
+			Commercial_Registriation_Number,
+			Number_Of_Directors,
+			Company_Equity_in_thousand,
+			Company_Name
+			)values(
+			'5098220895',
+			21,
+			43000000,
+			'Sinopec'
+			);
+
+		insert into Company(
+			Commercial_Registriation_Number,
+			Number_Of_Directors,
+			Company_Equity_in_thousand,
+			Company_Name
+			)values(
+			'3741894494',
+			27,
+			89048000,
+			'Softbank'
+			);
+
 		insert into CEO(
 			Name,
 			Sex,
@@ -405,6 +556,66 @@ create database Stock_Exchange;
 			'M',
 			48,
 			'6713620014'
+			);
+
+		insert into CEO(
+			Name,
+			Sex,
+			Age,
+			Commercial_Registriation_Number
+			)values(
+			'Sundar Pichai',
+			'M',
+			48,
+			'8643657928'
+			);
+
+		insert into CEO(
+			Name,
+			Sex,
+			Age,
+			Commercial_Registriation_Number
+			)values(
+			'Yousef Al-Benyan',
+			'M',
+			57,
+			'8857232768'
+			);
+
+		insert into CEO(
+			Name,
+			Sex,
+			Age,
+			Commercial_Registriation_Number
+			)values(
+			'Pekka Lundmark',
+			'M',
+			56,
+			'1792169223'
+			);
+
+		insert into CEO(
+			Name,
+			Sex,
+			Age,
+			Commercial_Registriation_Number
+			)values(
+			'Fu Chengyu',
+			'M',
+			69,
+			'5098220895'
+			);
+
+		insert into CEO(
+			Name,
+			Sex,
+			Age,
+			Commercial_Registriation_Number
+			)values(
+			'Masayoshi Son',
+			'M',
+			63,
+			'3741894494'
 			);
 
 		insert into Stock(
@@ -477,6 +688,277 @@ create database Stock_Exchange;
 			'6713620014'
 			);
 
+		insert into Stock(
+			Stock_Symbol,
+			Number_Of_Public_Stocks_in_thousand,
+			Stock_Price,
+			Market_Name,
+			Commercial_Registriation_Number
+			)values(
+			'GOOGL',
+			289886,
+			1787,
+			'NASDAQ',
+			'8643657928'
+			);
+
+		insert into Stock(
+			Stock_Symbol,
+			Number_Of_Public_Stocks_in_thousand,
+			Stock_Price,
+			Market_Name,
+			Commercial_Registriation_Number
+			)values(
+			'2010',
+			660000,
+			96,
+			'Tadawul',
+			'8857232768'
+			);
+
+		insert into Stock(
+			Stock_Symbol,
+			Number_Of_Public_Stocks_in_thousand,
+			Stock_Price,
+			Market_Name,
+			Commercial_Registriation_Number
+			)values(
+			'3741',
+			215350,
+			7250,
+			'Tokyo Stock Exchange',
+			'3741894494'
+			);
+
+		insert into Stock(
+			Stock_Symbol,
+			Number_Of_Public_Stocks_in_thousand,
+			Stock_Price,
+			Market_Name,
+			Commercial_Registriation_Number
+			)values(
+			'NOKIA',
+			988089,
+			3.42,
+			'Euronext',
+			'1792169223'
+			);
+
+		insert into Stock(
+			Stock_Symbol,
+			Number_Of_Public_Stocks_in_thousand,
+			Stock_Price,
+			Market_Name,
+			Commercial_Registriation_Number
+			)values(
+			'SPC',
+			154301,
+			301,
+			'Shanghai Stock Exchange',
+			'5098220895'
+			);
+
+		insert into Owns(
+			Stock_Symbol,
+			IBAN_number,
+			Number_Of_Shares
+			)values(
+			'AMZN',
+			'US281264541519999339',
+			420
+			);
+
+		insert into Owns(
+			Stock_Symbol,
+			IBAN_number,
+			Number_Of_Shares
+			)values(
+			'AMZN',
+			'FI3819869934513876',
+			40
+			);
+
+		insert into Owns(
+			Stock_Symbol,
+			IBAN_number,
+			Number_Of_Shares
+			)values(
+			'2222',
+			'SA2125267688145539388743',
+			1
+			);
+
+		insert into Owns(
+			Stock_Symbol,
+			IBAN_number,
+			Number_Of_Shares
+			)values(
+			'7203',
+			'SA2125267688145539388743',
+			2
+			);
+
+		insert into Owns(
+			Stock_Symbol,
+			IBAN_number,
+			Number_Of_Shares
+			)values(
+			'7203',
+			'JP821756900040913954463245',
+			99
+			);
+
+		insert into Owns(
+			Stock_Symbol,
+			IBAN_number,
+			Number_Of_Shares
+			)values(
+			'VOW3',
+			'US341922553675553244',
+			2311
+			);
+
+		insert into Owns(
+			Stock_Symbol,
+			IBAN_number,
+			Number_Of_Shares
+			)values(
+			'VOW3',
+			'DE16500105174529546245',
+			1053
+			);
+
+		insert into Owns(
+			Stock_Symbol,
+			IBAN_number,
+			Number_Of_Shares
+			)values(
+			'HKG',
+			'JP601009600050571982645704',
+			9
+			);
+
+		insert into Owns(
+			Stock_Symbol,
+			IBAN_number,
+			Number_Of_Shares
+			)values(
+			'HKG',
+			'SA4038369116113433969462',
+			32
+			);
+
+		insert into Owns(
+			Stock_Symbol,
+			IBAN_number,
+			Number_Of_Shares
+			)values(
+			'GOOGL',
+			'SA4038369116113433969462',
+			34
+			);
+
+		insert into Secures(
+			Stock_Symbol,
+			IBAN_number,
+			Commercial_Registriation_Number
+			)values(
+			'AMZN',
+			'US281264541519999339',
+			'2055005270'
+			);
+
+		insert into Secures(
+			Stock_Symbol,
+			IBAN_number,
+			Commercial_Registriation_Number
+			)values(
+			'AMZN',
+			'FI3819869934513876',
+			'2311911035'
+			);
+
+		insert into Secures(
+			Stock_Symbol,
+			IBAN_number,
+			Commercial_Registriation_Number
+			)values(
+			'GOOGL',
+			'FI3819869934513876',
+			'1010001054'
+			);
+
+		insert into Secures(
+			Stock_Symbol,
+			IBAN_number,
+			Commercial_Registriation_Number
+			)values(
+			'2222',
+			'CH7550515162589388976886',
+			'1516125270'
+			);
+
+		insert into Secures(
+			Stock_Symbol,
+			IBAN_number,
+			Commercial_Registriation_Number
+			)values(
+			'GOOGL',
+			'SA4038369116113433969462',
+			'1010001054'
+			);
+
+		insert into Secures(
+			Stock_Symbol,
+			IBAN_number,
+			Commercial_Registriation_Number
+			)values(
+			'2010',
+			'CH4250514369317289437157',
+			'5016604726'
+			);
+
+		insert into Secures(
+			Stock_Symbol,
+			IBAN_number,
+			Commercial_Registriation_Number
+			)values(
+			'NOKIA',
+			'SA2125267688145539388743',
+			'1010001054'
+			);
+
+		insert into Secures(
+			Stock_Symbol,
+			IBAN_number,
+			Commercial_Registriation_Number
+			)values(
+			'NOKIA',
+			'DE16500105174529546245',
+			'2311911035'
+			);
+
+		insert into Secures(
+			Stock_Symbol,
+			IBAN_number,
+			Commercial_Registriation_Number
+			)values(
+			'SPC',
+			'CH7550515162589388976886',
+			'1516125270'
+			);
+
+		insert into Secures(
+			Stock_Symbol,
+			IBAN_number,
+			Commercial_Registriation_Number
+			)values(
+			'VOW3',
+			'CH7550515162589388976886',
+			'1516125270'
+			);
+
+
 
 
 	describe Stock_Market;
@@ -494,3 +976,5 @@ create database Stock_Exchange;
 	select * from CEO;
 	select * from Investor;
 	select * from Bank;
+	select * from Owns;
+	select * from Secures;
