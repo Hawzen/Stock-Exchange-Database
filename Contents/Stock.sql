@@ -52,8 +52,8 @@ create database Stock_Exchange;
 		Commercial_Registration_Number varchar(100),
 
 		constraint Stock_Symbol_PK primary key(Stock_Symbol),
-		constraint Market_Name_FK foreign key(Market_Name) references Stock_Market(Market_Name) on delete set null on update cascade,
-		constraint Commercial_Registration_Number_FK1 foreign key(Commercial_Registration_Number) references Company(Commercial_Registration_Number) on delete set null on update cascade
+		constraint Market_Name_FK foreign key(Market_Name) references Stock_Market(Market_Name) on delete cascade on update cascade,
+		constraint Commercial_Registration_Number_FK1 foreign key(Commercial_Registration_Number) references Company(Commercial_Registration_Number) on delete cascade on update cascade
 		);
 
 	create table CEO(
@@ -63,7 +63,7 @@ create database Stock_Exchange;
 		Commercial_Registration_Number varchar(100),
 
 		constraint Compound_PK primary key(Name , Commercial_Registration_Number),
-		constraint Commercial_Registration_Number_FK2 foreign key(Commercial_Registration_Number) references Company(Commercial_Registration_Number) on update cascade,
+		constraint Commercial_Registration_Number_FK2 foreign key(Commercial_Registration_Number) references Company(Commercial_Registration_Number) on update cascade on delete cascade,
 		constraint Age_Check check(Age >= 23)
 		);
 
@@ -73,9 +73,9 @@ create database Stock_Exchange;
 		Commercial_Registration_Number varchar(100),
 
 		constraint Compound_PK primary key(Stock_Symbol , IBAN_number , Commercial_Registration_Number),
-		constraint Stock_Symbol_FK foreign key(Stock_Symbol) references Stock(Stock_Symbol) on update cascade,
-		constraint IBAN_number_FK foreign key(IBAN_number) references Investor(IBAN_number) on update cascade,
-		constraint Commercial_Registration_Number_FK3 foreign key(Commercial_Registration_Number) references Bank(Commercial_Registration_Number) on update cascade
+		constraint Stock_Symbol_FK foreign key(Stock_Symbol) references Stock(Stock_Symbol) on update cascade on delete cascade,
+		constraint IBAN_number_FK foreign key(IBAN_number) references Investor(IBAN_number) on update cascade on delete cascade,
+		constraint Commercial_Registration_Number_FK3 foreign key(Commercial_Registration_Number) references Bank(Commercial_Registration_Number) on update cascade on delete cascade
 		);
 
 	create table Owns(
@@ -84,8 +84,8 @@ create database Stock_Exchange;
 		Number_Of_Shares int,
 
 		constraint Compound_PK primary key(Stock_Symbol , IBAN_number),
-		constraint Stock_Symbol_FK2 foreign key(Stock_Symbol) references Stock(Stock_Symbol) on update cascade,
-		constraint IBAN_number_FK2 foreign key(IBAN_number) references Investor(IBAN_number) on update cascade
+		constraint Stock_Symbol_FK2 foreign key(Stock_Symbol) references Stock(Stock_Symbol) on update cascade on delete cascade,
+		constraint IBAN_number_FK2 foreign key(IBAN_number) references Investor(IBAN_number) on update cascade on delete cascade
 		);
 
 	insert into Stock_Market(
