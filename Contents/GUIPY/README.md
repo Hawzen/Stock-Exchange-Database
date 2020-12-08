@@ -1,4 +1,6 @@
 Add dbLogin.txt
 with the formatting:
-<USERNAME>
-<PASSWORD>
+<br> 
+< USERNAME >
+<br>
+< PASSWORD >
