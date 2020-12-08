@@ -42,8 +42,9 @@ def getterToDB(qformat, getters, table):
     runQuery(qformat, table)
    
 # DB Setup
-name = "root" # FILL ME
-password = # FILL ME
+with open("dblogin.txt", "r") as file:
+    name = file.readline()
+    password = file.readline()
 logintodb(name, password)
 
 # Setup
