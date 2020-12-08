@@ -288,4 +288,4 @@ create database Stock_Exchange;
 	-- select CEO.* from CEO natural join Company natural join Stock where Stock_Price < 200;
 	/* select CEO.* from CEO natural join Company 
 	    natural join Stock natural join Investor
-	    where NetWorth > 50000 and CEO.Sex="M" group by Name; -- FULL SET
+	    where NetWorth > 50000 and CEO.Sex="M" group by Name;*/ -- FULL SET
