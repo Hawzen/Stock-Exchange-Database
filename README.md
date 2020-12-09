@@ -1,2 +1,3 @@
-# 380-Project_Stock_Exchange
-Sem1 Year2020
+# Stock Exchange Database
+### This is a project for the course CSC380 Databse design
+### Date: 9/12/2020 
